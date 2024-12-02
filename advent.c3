@@ -18,7 +18,7 @@ fn void! main() {
 	Clock stopwatch = start;
 	foreach (day : DAYS) {
 		day.solution()!;
-		io::printfn("%s: %d us elapsed", day.label, stopwatch.mark().to_duration());
+		io::printfn("%s: %dµs", day.label, stopwatch.mark().to_duration());
 	}
-	io::printfn("%d us elapsed total", ((NanoDuration)(stopwatch - start)).to_duration());
+	io::printfn("%dµs total", ((NanoDuration)(stopwatch - start)).to_duration());
 }
