@@ -1,19 +1,12 @@
-module day1;
+module d01;
 import std::io;
 import std::collections::list;
 import std::collections::map;
 import std::sort;
-import std::time::clock;
-
-fn void! main() {
-	part1()!;
-	part2()!;
-}
 
 fn void! part1() {
 	File f = file::open("d01.txt", "rb")!;
 
-	Clock start = clock::now();
 	List(<long>) t0;
 	List(<long>) t1;
 	while (true) {
@@ -38,13 +31,12 @@ fn void! part1() {
 	for (int i = 0; i < t0.len(); i += 1) {
 		if (t1[i] > t0[i]) { total += t1[i] - t0[i]; } else { total += t0[i] - t1[i]; }
 	}
-	io::printfn("%d (%d us elapsed)", total, start.to_now().to_duration());
+	io::printfn("%d", total);
 }
 
 fn void! part2() {
 	File f = file::open("d01.txt", "rb")!;
 
-	Clock start = clock::now();
 	HashMap(<int, int>) l_counts;
 	HashMap(<int, int>) r_counts;
 	while (true) {
@@ -82,5 +74,5 @@ fn void! part2() {
 		int r_count = r_counts.get(n) ?? 0;
 		total += n * l_count * r_count;
 	};
-	io::printfn("%d (%d us elapsed)", total, start.to_now().to_duration());
+	io::printfn("%d", total);
 }
