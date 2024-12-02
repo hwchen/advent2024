@@ -1,7 +1,7 @@
 module d01;
 import std::io;
-import std::collections::list;
-import std::collections::map;
+import std::collections;
+import std::math;
 import std::sort;
 
 fn void! part1() {
@@ -16,11 +16,10 @@ fn void! part1() {
 				if (err == IoError.EOF) break;
 				return err?;
 			}
-			if (line.len == 0) break;
 			String[] xs = line.tsplit("   ");
 			assert(xs.len == 2);
-			t0.push(xs[0].to_integer(long)!);
-			t1.push(xs[1].to_integer(long)!);
+			t0.push(xs[0].to_long()!);
+			t1.push(xs[1].to_long()!);
 		};
 	}
 
@@ -28,8 +27,8 @@ fn void! part1() {
 	quicksort(t1);
 
 	usz total = 0;
-	for (int i = 0; i < t0.len(); i += 1) {
-		if (t1[i] > t0[i]) { total += t1[i] - t0[i]; } else { total += t0[i] - t1[i]; }
+	while (t0.len()) {
+		total += math::abs(t0.pop() - t1.pop())!;
 	}
 	io::printfn("%d", total);
 }
