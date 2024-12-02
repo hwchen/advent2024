@@ -2,3 +2,4 @@
 !*.c3
 !*.txt
 !.gitignore
+!justfile
