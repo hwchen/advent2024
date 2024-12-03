@@ -1,2 +1,2 @@
-run:
-    c3c compile-run -O5 .
+run *args="-O5":
+    c3c compile-run {{args}} .

@@ -4,18 +4,13 @@ import std::collections;
 import std::math;
 import std::sort;
 
-fn void! part1() {
-	File f = file::open("d01.txt", "rb")!;
-
+fn void! part1(String input) {
 	List(<long>) t0;
 	List(<long>) t1;
-	while (true) {
+	String[] lines = input.tsplit("\n");
+	foreach (line : lines) {
+		if (line.len == 0) continue;
 		@pool() {
-			String! line = io::treadline(&f);
-			if (catch err = line) {
-				if (err == IoError.EOF) break;
-				return err?;
-			}
 			String[] xs = line.tsplit("   ");
 			assert(xs.len == 2);
 			t0.push(xs[0].to_long()!);
@@ -33,19 +28,13 @@ fn void! part1() {
 	io::printfn("%d", total);
 }
 
-fn void! part2() {
-	File f = file::open("d01.txt", "rb")!;
-
+fn void! part2(String input) {
 	HashMap(<int, int>) l_counts;
 	HashMap(<int, int>) r_counts;
-	while (true) {
+	String[] lines = input.tsplit("\n");
+	foreach (line : lines) {
+		if (line.len == 0) continue;
 		@pool() {
-			String! line = io::treadline(&f);
-			if (catch err = line) {
-				if (err == IoError.EOF) break;
-				return err?;
-			}
-			if (line.len == 0) break;
 			String[] xs = line.tsplit("   ");
 			assert(xs.len == 2);
 

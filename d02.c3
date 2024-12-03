@@ -4,17 +4,11 @@ import std::collections;
 import std::math;
 import std::sort;
 
-fn void! part1() {
-	File f = file::open("d02.txt", "rb")!;
-
+fn void! part1(String input) {
 	usz total;
-	while LINE: (true) {
+	String[] lines = input.tsplit("\n");
+	foreach LINE: (line : lines) {
 		@pool() {
-			String! line = io::treadline(&f);
-			if (catch err = line) {
-				if (err == IoError.EOF) break;
-				return err?;
-			}
 			String[] xs = line.tsplit(" ");
 			int prev_change = 0;
 			for (int i = 0; i < xs.len - 1; i += 1) {
