@@ -21,7 +21,9 @@ fn void! main() {
 	foreach (day : DAYS) {
 		String input = (String)file::load_temp(day.input_path)!;
 		Clock start = clock::now();
-		day.solution(input)!;
+		@pool() {
+			day.solution(input)!;
+		};
 		NanoDuration stop = start.to_now();
 		total += stop;
 		io::printfn("%s: %dµs", day.label, stop.to_duration());
