@@ -17,12 +17,14 @@ const Day[] DAYS = {
 };
 
 fn void! main() {
-	Clock start = clock::now();
-	Clock stopwatch = start;
+	NanoDuration total = 0;
 	foreach (day : DAYS) {
 		String input = (String)file::load_temp(day.input_path)!;
+		Clock start = clock::now();
 		day.solution(input)!;
-		io::printfn("%s: %dµs", day.label, stopwatch.mark().to_duration());
+		NanoDuration stop = start.to_now();
+		total += stop;
+		io::printfn("%s: %dµs", day.label, stop.to_duration());
 	}
-	io::printfn("%dµs total", ((NanoDuration)(stopwatch - start)).to_duration());
+	io::printfn("%dµs total", total.to_duration());
 }
