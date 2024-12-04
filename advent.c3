@@ -14,6 +14,7 @@ const Day[] DAYS = {
 	{ "d01-p1", "d01.txt", &d01::part1 },
 	{ "d01-p2", "d01.txt", &d01::part2 },
 	{ "d02-p1", "d02.txt", &d02::part1 },
+	{ "d02-p2", "d02.txt", &d02::part2 },
 };
 
 fn void! main() {
