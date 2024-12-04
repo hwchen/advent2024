@@ -8,6 +8,7 @@ fn void! part1(String input) {
 	usz total;
 	String[] lines = input.tsplit("\n");
 	foreach LINE: (line : lines) {
+		if (line.len == 0) continue;
 		@pool() {
 			String[] xs = line.tsplit(" ");
 			int prev_change = 0;
